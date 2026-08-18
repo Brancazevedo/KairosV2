@@ -9,7 +9,7 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Gerador de Indicadores Data Quality em PPTX" },
+      { title: "Kairos - Indicadores DQ" },
       {
         name: "description",
         content:
