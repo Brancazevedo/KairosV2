@@ -15,7 +15,7 @@ export const Route = createFileRoute("/")({
         content:
           "Envie as planilhas de frequência, validação, associações e score e gere a apresentação de Data Quality no template oficial.",
       },
-      { property: "og:title", content: "Gerador de Indicadores Data Quality" },
+      { property: "og:title", content: "Kairos - Dq" },
       {
         property: "og:description",
         content:
