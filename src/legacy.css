@@ -1133,6 +1133,10 @@ text-decoration: underline;
   display: block;
 }
 
+.help-source-popover.is-open {
+  display: block;
+}
+
 
 /* =========================================================
    CONTEÚDO DO POPOVER
@@ -1753,3 +1757,5 @@ footer {
     transition: none;
   }
 }
+
+
