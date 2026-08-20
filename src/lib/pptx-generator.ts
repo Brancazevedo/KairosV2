@@ -61,17 +61,17 @@ const MESES_PT = [
   "dezembro",
 ];
 
-const cap = (v: number) =>
-  Number(v || 0).toFixed(2).replace(".", ",");
+const cap = (s: string) =>
+  s.charAt(0).toUpperCase() + s.slice(1);
 
 const fmtPctBR = (v: number) =>
-  (Number(v || 0) * 100).toFixed(2).replace(".", ",");
+  (v * 100).toFixed(2).replace(".", ",") + "%";
 
 const fmtNumBR = (v: number) =>
-  Number(v || 0).toFixed(2).replace(".", ",");
+  v.toFixed(2).replace(".", ",");
 
 const pctInt = (v: number) =>
-  (Number(v || 0) * 100).toFixed(2).replace(".", ",");
+  String(Math.round(v * 100));
 
 /* =========================================================
    DETECÇÃO DE LINHAS/CÉLULAS RISCADAS
@@ -869,11 +869,11 @@ function parseValidacao(
     div,
     tabela,
     pctDentro: dentro / d,
-    pctDentro: dentro / d,
-pctFora: fora / d,
-pctPend: pend / d,
-pctDiv: div / d,
-pctValidado: (dentro + fora) / d,
+    pctFora: fora / d,
+    pctPend: pend / d,
+    pctDiv: div / d,
+    pctValidado:
+      (dentro + fora) / d,
   };
 }
 
@@ -2858,9 +2858,13 @@ export async function gerarApresentacao(
 
   const hoje = new Date();
 
-const mesAtualCap = MESES_PT[hoje.getMonth()];
+  const mesAtualCap = cap(
+    MESES_PT[hoje.getMonth()],
+  );
 
-const anoAtual = String(hoje.getFullYear());
+  const anoAtual = String(
+    hoje.getFullYear(),
+  );
 
   const dataAnterior = new Date(
     hoje.getFullYear(),
@@ -3022,28 +3026,32 @@ const anoAtual = String(hoje.getFullYear());
     );
 
     s4 = replaceNumberAfterLabel(
-  s4,
-  "Dentro do Prazo",
-  pctInt(val.pctDentro),
-);
+      s4,
+      "Dentro do Prazo",
+      pctInt(val.pctDentro),
+    );
 
-s4 = replaceNumberAfterLabel(
-  s4,
-  "Pendentes",
-  pctInt(val.pctPend),
-);
+    s4 = replaceNumberAfterLabel(
+      s4,
+      "Pendentes",
+      fmtNumBR(
+        val.pctPend * 100,
+      ),
+    );
 
-s4 = replaceNumberAfterLabel(
-  s4,
-  "Divergentes",
-  pctInt(val.pctDiv),
-);
+    s4 = replaceNumberAfterLabel(
+      s4,
+      "Divergentes",
+      pctInt(val.pctDiv),
+    );
 
-s4 = replaceNumberAfterLabel(
-  s4,
-  "Fora do prazo",
-  pctInt(val.pctFora),
-);
+    s4 = replaceNumberAfterLabel(
+      s4,
+      "Fora do prazo",
+      fmtNumBR(
+        val.pctFora * 100,
+      ),
+    );
 
     zip.file(
       "ppt/slides/slide4.xml",
