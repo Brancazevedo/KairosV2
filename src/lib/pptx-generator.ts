@@ -3025,33 +3025,29 @@ export async function gerarApresentacao(
       anoRef,
     );
 
-    s4 = replaceNumberAfterLabel(
-      s4,
-      "Dentro do Prazo",
-      pctInt(val.pctDentro),
-    );
+   s4 = replaceNumberAfterLabel(
+  s4,
+  "Dentro do Prazo",
+  fmtNumBR(val.pctDentro * 100),
+);
 
-    s4 = replaceNumberAfterLabel(
-      s4,
-      "Pendentes",
-      fmtNumBR(
-        val.pctPend * 100,
-      ),
-    );
+s4 = replaceNumberAfterLabel(
+  s4,
+  "Pendentes",
+  fmtNumBR(val.pctPend * 100),
+);
 
-    s4 = replaceNumberAfterLabel(
-      s4,
-      "Divergentes",
-      pctInt(val.pctDiv),
-    );
+s4 = replaceNumberAfterLabel(
+  s4,
+  "Divergentes",
+  fmtNumBR(val.pctDiv * 100),
+);
 
-    s4 = replaceNumberAfterLabel(
-      s4,
-      "Fora do prazo",
-      fmtNumBR(
-        val.pctFora * 100,
-      ),
-    );
+s4 = replaceNumberAfterLabel(
+  s4,
+  "Fora do prazo",
+  fmtNumBR(val.pctFora * 100),
+);
 
     zip.file(
       "ppt/slides/slide4.xml",
