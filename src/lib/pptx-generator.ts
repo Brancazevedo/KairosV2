@@ -61,17 +61,17 @@ const MESES_PT = [
   "dezembro",
 ];
 
-const cap = (s: string) =>
-  s.charAt(0).toUpperCase() + s.slice(1);
+const cap = (v: number) =>
+  (v * 100).toFixed(2).replace(".", ",") ;
 
 const fmtPctBR = (v: number) =>
-  (v * 100).toFixed(2).replace(".", ",") + "%";
+  (v * 100).toFixed(2).replace(".", ",") ;
 
 const fmtNumBR = (v: number) =>
-  v.toFixed(2).replace(".", ",");
+  (v * 100).toFixed(2).replace(".", ",") ;
 
 const pctInt = (v: number) =>
-  String(Math.round(v * 100));
+  (v * 100).toFixed(2).replace(".", ",") ;
 
 /* =========================================================
    DETECÇÃO DE LINHAS/CÉLULAS RISCADAS
@@ -869,11 +869,10 @@ function parseValidacao(
     div,
     tabela,
     pctDentro: dentro / d,
-    pctFora: fora / d,
-    pctPend: pend / d,
-    pctDiv: div / d,
-    pctValidado:
-      (dentro + fora) / d,
+    pctFora: ((fora / d) * 100).toFixed(2) + "%",
+pctPend: ((pend / d) * 100).toFixed(2) + "%",
+pctDiv: ((div / d) * 100).toFixed(2) + "%",
+pctValidado: (((dentro + fora) / d) * 100).toFixed(2) + "%",
   };
 }
 
