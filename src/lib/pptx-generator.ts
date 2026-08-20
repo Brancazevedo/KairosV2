@@ -2859,7 +2859,6 @@ export async function gerarApresentacao(
   const hoje = new Date();
 
 const mesAtualCap = MESES_PT[hoje.getMonth()];
-const mesCap = MESES_PT[dataAnterior.getMonth()];
 
 const anoAtual = String(hoje.getFullYear());
 
