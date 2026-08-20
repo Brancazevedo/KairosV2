@@ -873,7 +873,7 @@ function parseValidacao(
 pctFora: fora / d,
 pctPend: pend / d,
 pctDiv: div / d,
-pctValidado: (dentro + fora) / d,,
+pctValidado: (dentro + fora) / d,
   };
 }
 
